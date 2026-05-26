@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://jianxuanchiustock.netlify.app/ -->
+<html lang="zh-Hant"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台股懶人分析 · 一眼看懂技術面</title>
+<script src="./台股懶人分析 · 一眼看懂技術面_files/saved_resource"></script>
+<script src="./台股懶人分析 · 一眼看懂技術面_files/chart.umd.min.js.下載"></script>
+<script src="./台股懶人分析 · 一眼看懂技術面_files/chartjs-adapter-date-fns.bundle.min.js.下載"></script>
+<link href="./台股懶人分析 · 一眼看懂技術面_files/css2" rel="stylesheet">
+<style>
+  body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
+  .signal-bull { color: #dc2626; }
+  .signal-bear { color: #16a34a; }
+  .signal-neutral { color: #6b7280; }
+  .bg-bull { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+  .bg-bear { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+  .bg-neutral { background: linear-gradient(135deg, #f3f4f6, #e5e7eb); }
+  .pinned-card { transition: all 0.2s; }
+  .pinned-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+  .loader { border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: inline-block; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .fade-in { animation: fadeIn 0.3s ease-in; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mx-auto{margin-left:auto;margin-right:auto}.mb-3{margin-bottom:0.75rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-7{height:1.75rem}.min-h-screen{min-height:100vh}.w-7{width:1.75rem}.max-w-5xl{max-width:64rem}.flex-1{flex:1 1 0%}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-2\.5{gap:0.625rem}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-blue-100{--tw-border-opacity:1;border-color:rgb(219 234 254 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-rose-200{--tw-border-opacity:1;border-color:rgb(254 205 211 / var(--tw-border-opacity, 1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-rose-50{--tw-bg-opacity:1;background-color:rgb(255 241 242 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-slate-50{--tw-gradient-from:#f8fafc var(--tw-gradient-from-position);--tw-gradient-to:rgb(248 250 252 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-50{--tw-gradient-from:#eff6ff var(--tw-gradient-from-position);--tw-gradient-to:rgb(239 246 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-slate-100{--tw-gradient-to:#f1f5f9 var(--tw-gradient-to-position)}.to-indigo-50{--tw-gradient-to:#eef2ff var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-8{padding:2rem}.p-3{padding:0.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-6{padding-bottom:1.5rem}.pt-1{padding-top:0.25rem}.text-left{text-align:left}.text-center{text-align:center}.align-middle{vertical-align:middle}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-5xl{font-size:3rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.leading-relaxed{line-height:1.625}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-pink-600{--tw-text-opacity:1;color:rgb(219 39 119 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72 / var(--tw-text-opacity, 1))}.text-yellow-600{--tw-text-opacity:1;color:rgb(202 138 4 / var(--tw-text-opacity, 1))}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.outline-none{outline:2px solid transparent;outline-offset:2px}.ring-2{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-white{--tw-ring-opacity:1;--tw-ring-color:rgb(255 255 255 / var(--tw-ring-opacity, 1))}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.hover\:bg-rose-100:hover{--tw-bg-opacity:1;background-color:rgb(255 228 230 / var(--tw-bg-opacity, 1))}.hover\:text-pink-700:hover{--tw-text-opacity:1;color:rgb(190 24 93 / var(--tw-text-opacity, 1))}.hover\:text-red-500:hover{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:border-blue-400:focus{--tw-border-opacity:1;border-color:rgb(96 165 250 / var(--tw-border-opacity, 1))}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-blue-100:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(219 234 254 / var(--tw-ring-opacity, 1))}@media (min-width: 640px){.sm\:mb-8{margin-bottom:2rem}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:p-5{padding:1.25rem}.sm\:py-10{padding-top:2.5rem;padding-bottom:2.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}}@media (min-width: 1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}</style></head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+
+<div class="max-w-5xl mx-auto px-4 py-6 sm:py-10">
+
+  <!-- Header -->
+  <header class="mb-6 sm:mb-8">
+    <div class="flex items-center justify-between flex-wrap gap-3">
+      <div>
+        <div class="flex items-center gap-3 flex-wrap">
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-800">📈 台股懶人分析</h1>
+          <div class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-full border border-blue-100 shadow-sm">
+            <img src="./台股懶人分析 · 一眼看懂技術面_files/author.jpg" alt="邱建軒" class="w-7 h-7 rounded-full object-cover ring-2 ring-white shadow-sm" onerror="this.style.display=&#39;none&#39;" style="display: none;">
+            <span class="text-xs font-bold text-slate-700">作者：邱建軒</span>
+            <span class="text-slate-300">·</span>
+            <a href="https://instagram.com/jianxuan_chiu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-bold text-pink-600 hover:text-pink-700 transition" title="Instagram @jianxuan_chiu">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
+              </svg>
+              @jianxuan_chiu
+            </a>
+          </div>
+        </div>
+        <p class="text-sm text-slate-500 mt-2">輸入代號 → 一眼看懂技術面 → 釘選 / 分享給朋友</p>
+      </div>
+      <div class="text-xs text-slate-400">
+        <span id="lastUpdate">尚未查詢</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search -->
+  <section class="bg-white rounded-2xl shadow-sm p-4 sm:p-5 mb-5">
+    <form id="searchForm" class="flex gap-2">
+      <input id="stockInput" type="text" inputmode="numeric" placeholder="輸入股票代號（例如 2330、0050、6488）" class="flex-1 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none text-base" autocomplete="off">
+      <button type="submit" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl transition shadow-sm">
+        查詢
+      </button>
+    </form>
+    <div class="flex flex-wrap gap-2 mt-3 text-xs">
+      <span class="text-slate-500">熱門：</span>
+      <button class="quick-btn text-blue-600 hover:underline" data-code="2330">2330 台積電</button>
+      <button class="quick-btn text-blue-600 hover:underline" data-code="2317">2317 鴻海</button>
+      <button class="quick-btn text-blue-600 hover:underline" data-code="0050">0050 元大台灣50</button>
+      <button class="quick-btn text-blue-600 hover:underline" data-code="2454">2454 聯發科</button>
+      <button class="quick-btn text-blue-600 hover:underline" data-code="2412">2412 中華電</button>
+    </div>
+  </section>
+
+  <!-- 本日適合進場 -->
+  <section id="screenSection" class="mb-5">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-sm font-bold text-slate-600">✨ 本日適合進場（熱門 30 檔掃描）</h2>
+      <button id="refreshScreen" class="text-xs text-blue-500 hover:underline">🔄 重新掃描</button>
+    </div>
+    <div id="screenContent" class="bg-white rounded-2xl shadow-sm p-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 mb-2">
+      
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2603">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">長榮</div>
+          <span class="text-xs font-bold text-yellow-600">★</span>
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2603</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">214.00</span>
+          <span class="text-xs font-bold signal-bear">▼ 2.28%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 可考慮買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="3711">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">日月光投控</div>
+          <span class="text-xs font-bold text-yellow-600">★</span>
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">3711</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">617.00</span>
+          <span class="text-xs font-bold signal-bull">▲ 9.98%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 可考慮買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2317">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">鴻海</div>
+          
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2317</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">261.00</span>
+          <span class="text-xs font-bold signal-bull">▲ 4.40%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 偏向買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2891">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">中信金</div>
+          
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2891</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">57.30</span>
+          <span class="text-xs font-bold signal-bear">▼ 0.52%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 偏向買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2881">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">富邦金</div>
+          
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2881</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">97.70</span>
+          <span class="text-xs font-bold signal-bull">▲ 2.73%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 偏向買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2882">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">國泰金</div>
+          
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2882</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">81.50</span>
+          <span class="text-xs font-bold signal-bull">▲ 2.26%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 偏向買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2885">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">元大金</div>
+          
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2885</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">56.10</span>
+          <span class="text-xs font-bold signal-bull">▲ 1.81%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 偏向買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2609">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">陽明</div>
+          <span class="text-xs font-bold text-yellow-600">★</span>
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2609</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">51.80</span>
+          <span class="text-xs font-bold signal-bear">▼ 2.26%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 可考慮買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="3034">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">聯詠</div>
+          
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">3034</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">489.00</span>
+          <span class="text-xs font-bold signal-bull">▲ 0.72%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 偏向買進</div>
+      </button>
+    
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="2379">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">瑞昱</div>
+          
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">2379</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">583.00</span>
+          <span class="text-xs font-bold signal-bull">▲ 0.87%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">🟢 偏向買進</div>
+      </button>
+    
+    </div>
+    <p class="text-xs text-slate-400 text-center pt-1">共找到 10 檔・掃描時間 10:38:19・點擊查看完整分析</p>
+  </div>
+  </section>
+
+  <!-- Pinned -->
+  <section id="pinnedSection" class="mb-5 hidden">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-sm font-bold text-slate-600">📌 我釘選的股票</h2>
+      <button id="clearPins" class="text-xs text-slate-400 hover:text-red-500">清空</button>
+    </div>
+    <div id="pinnedGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+  </section>
+
+  <!-- Result -->
+  <section id="resultSection"></section>
+
+  <!-- Empty state -->
+  <section id="emptyState" class="bg-white rounded-2xl shadow-sm p-8 text-center text-slate-500">
+    <div class="text-5xl mb-3">🔍</div>
+    <p class="text-sm">輸入台股代號，立即看到技術面懶人分析</p>
+    <p class="text-xs text-slate-400 mt-2">支援上市（.TW）與上櫃（.TWO）</p>
+  </section>
+
+  <!-- Disclaimer -->
+  <footer class="mt-10 text-center text-xs text-slate-400 leading-relaxed pb-6">
+    <p class="font-bold text-slate-500">⚠️ 免責聲明</p>
+    <p class="mt-1">本網站僅依據歷史價格計算技術指標，<b>不構成投資建議</b>，亦無法保證未來走勢。</p>
+    <p>投資有風險，請自行判斷並承擔結果。資料來源：FinMind（每日收盤）/ TWSE MIS（盤中即時）/ Google 新聞（消息面）。</p>
+  </footer>
+
+</div>
+
+
+<script>
+// ============================================================
+// ⭐ Cloudflare Worker 網址（部署後填入！）
+//    沒填空字串 = 即時報價自動關閉，其他功能不受影響（仍可看到 FinMind 收盤資料）
+// ============================================================
+const WORKER_URL = ''; // 例如：'https://stock-worker.your-name.workers.dev'
+
+// ============================================================
+// 設定 — 使用 FinMind API（台灣專屬、原生支援 CORS、不需 proxy）
+// ============================================================
+const FINMIND_BASE = 'https://api.finmindtrade.com/api/v4/data';
+const NAME_CACHE_KEY = 'taiwan_stock_info_v2'; // 含中文名、行業、上市/上櫃
+
+// 圖表自訂插件：表格點擊時，在圖上畫一條垂直藍線並標日期
+const verticalLinePlugin = {
+  id: 'verticalLine',
+  afterDraw: (chart) => {
+    const cfg = chart.options.plugins?.verticalLine;
+    if (!cfg || cfg.x == null) return;
+    const xPx = chart.scales.x.getPixelForValue(cfg.x);
+    if (xPx < chart.chartArea.left || xPx > chart.chartArea.right) return;
+    const ctx = chart.ctx;
+    ctx.save();
+    ctx.beginPath();
+    ctx.setLineDash([5, 3]);
+    ctx.moveTo(xPx, chart.chartArea.top);
+    ctx.lineTo(xPx, chart.chartArea.bottom);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#2563eb';
+    ctx.stroke();
+    ctx.restore();
+    // 日期標籤
+    const d = new Date(cfg.x);
+    const label = `${d.getMonth()+1}/${d.getDate()}`;
+    ctx.save();
+    ctx.fillStyle = '#2563eb';
+    ctx.fillRect(xPx - 22, chart.chartArea.top - 16, 44, 14);
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(label, xPx, chart.chartArea.top - 5);
+    ctx.restore();
+  }
+};
+Chart.register(verticalLinePlugin);
+
+// ============================================================
+// 工具：localStorage 釘選
+// ============================================================
+const PIN_KEY = 'taiwan_stock_pins_v1';
+const getPins = () => {
+  try { return JSON.parse(localStorage.getItem(PIN_KEY)) || []; }
+  catch { return []; }
+};
+const setPins = (arr) => localStorage.setItem(PIN_KEY, JSON.stringify(arr));
+const isPinned = (code) => getPins().includes(code);
+const togglePin = (code) => {
+  const pins = getPins();
+  const idx = pins.indexOf(code);
+  if (idx >= 0) pins.splice(idx, 1);
+  else pins.push(code);
+  setPins(pins);
+  return pins.includes(code);
+};
+
+// ============================================================
+// 抓資料：FinMind 日 K
+// ============================================================
+async function fetchPriceData(code) {
+  // 抓 9 個月資料（為了讓 MA60 與其他指標有足夠樣本）
+  const start = new Date();
+  start.setMonth(start.getMonth() - 9);
+  const startStr = start.toISOString().slice(0, 10);
+  const url = `${FINMIND_BASE}?dataset=TaiwanStockPrice&data_id=${encodeURIComponent(code)}&start_date=${startStr}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const json = await res.json();
+  if (json.status !== 200) throw new Error(json.msg || 'API 回傳錯誤');
+  if (!json.data || json.data.length === 0) {
+    throw new Error('找不到此股票代號的歷史資料，請確認代號正確');
+  }
+  return json.data;
+}
+
+// 取得股票中文名稱（一天快取一次）
+let nameMapPromise = null;
+async function loadNameMap() {
+  if (nameMapPromise) return nameMapPromise;
+  nameMapPromise = (async () => {
+    try {
+      const today = new Date().toISOString().slice(0, 10);
+      const cached = JSON.parse(localStorage.getItem(NAME_CACHE_KEY) || 'null');
+      if (cached && cached.date === today && cached.map) return cached.map;
+    } catch {}
+    try {
+      const res = await fetch(`${FINMIND_BASE}?dataset=TaiwanStockInfo`);
+      const json = await res.json();
+      const map = {};
+      if (json.data) {
+        json.data.forEach(d => {
+          if (d.stock_id) map[d.stock_id] = {
+            name: d.stock_name || d.stock_id,
+            industry: d.industry_category || '',
+            type: d.type || '' // twse=上市, tpex=上櫃
+          };
+        });
+      }
+      try {
+        localStorage.setItem(NAME_CACHE_KEY, JSON.stringify({
+          date: new Date().toISOString().slice(0, 10),
+          map
+        }));
+      } catch {}
+      return map;
+    } catch {
+      return {};
+    }
+  })();
+  return nameMapPromise;
+}
+
+async function getStockName(code) {
+  const map = await loadNameMap();
+  return map[code]?.name || code;
+}
+
+async function getStockInfo(code) {
+  const map = await loadNameMap();
+  return map[code] || { name: code, industry: '', type: '' };
+}
+
+// ============================================================
+// 即時報價（Cloudflare Worker → TWSE MIS）
+// ============================================================
+let liveTimer = null;
+
+async function fetchLiveQuote(code) {
+  if (!WORKER_URL) return null;
+  try {
+    const r = await fetch(`${WORKER_URL}/api/quote?code=${encodeURIComponent(code)}`);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
+function applyLiveQuote(data) {
+  if (!data || data.price == null) return;
+  const priceEl  = document.getElementById('livePrice');
+  const changeEl = document.getElementById('liveChange');
+  const timeEl   = document.getElementById('liveTime');
+  if (!priceEl || !changeEl) return;
+  const chg = data.change ?? 0;
+  const pct = data.change_pct ?? 0;
+  const sign = chg > 0 ? '▲' : chg < 0 ? '▼' : '–';
+  const cls  = chg > 0 ? 'signal-bull' : chg < 0 ? 'signal-bear' : 'signal-neutral';
+  priceEl.className  = priceEl.className.replace(/signal-(bull|bear|neutral)/g, '').trim() + ' ' + cls;
+  changeEl.className = changeEl.className.replace(/signal-(bull|bear|neutral)/g, '').trim() + ' ' + cls;
+  priceEl.textContent  = data.price.toFixed(2);
+  changeEl.textContent = `${sign} ${Math.abs(chg).toFixed(2)} (${Math.abs(pct).toFixed(2)}%)`;
+  if (timeEl) {
+    const status = data.is_trading ? '即時' : '盤後';
+    timeEl.innerHTML = `<span class="inline-block w-2 h-2 ${data.is_trading ? 'bg-red-500 animate-pulse' : 'bg-slate-400'} rounded-full mr-1 align-middle"></span>📡 ${status} ${data.time || ''}`;
+  }
+}
+
+async function startLiveUpdates(code) {
+  if (liveTimer) { clearInterval(liveTimer); liveTimer = null; }
+  if (!WORKER_URL) return;
+  const tick = async () => {
+    const data = await fetchLiveQuote(code);
+    if (data) applyLiveQuote(data);
+  };
+  await tick();
+  liveTimer = setInterval(tick, 30000); // 30 秒刷一次
+}
+
+// ============================================================
+// 消息面：抓 Google 新聞 + 關鍵字情緒分析
+// ============================================================
+const NEWS_POS = ['大漲','上漲','漲停','漲幅','利多','強勢','突破','新高','創高','看好','加碼','獲利','成長','增加','業績','訂單','大單','升評','調升','大賺','亮眼','超預期','受惠','拉抬','轉強','轉好','旺季','飆','登頂','爆量','看俏'];
+const NEWS_NEG = ['大跌','下跌','跌停','跌幅','利空','弱勢','跌破','新低','創低','看壞','減碼','虧損','衰退','減少','滑落','放緩','警訊','降評','調降','賣壓','失利','衝擊','低於','不如預期','受挫','拉回','轉弱','淡季','慘','重摔','跳水','看淡','疲軟'];
+
+function newsSentiment(title) {
+  let pos = 0, neg = 0;
+  NEWS_POS.forEach(w => { if (title.includes(w)) pos++; });
+  NEWS_NEG.forEach(w => { if (title.includes(w)) neg++; });
+  const score = pos - neg;
+  if (score > 0)  return { tag: '利多', score, cls: 'bg-red-100 text-red-700' };
+  if (score < 0)  return { tag: '利空', score, cls: 'bg-green-100 text-green-700' };
+  return { tag: '中性', score: 0, cls: 'bg-slate-100 text-slate-500' };
+}
+
+function splitTitleSource(rawTitle) {
+  const idx = rawTitle.lastIndexOf(' - ');
+  if (idx > 0) return { title: rawTitle.slice(0, idx), source: rawTitle.slice(idx + 3) };
+  return { title: rawTitle, source: '' };
+}
+
+function relativeTime(pubDateStr) {
+  if (!pubDateStr) return '';
+  const date = new Date(pubDateStr.includes('T') ? pubDateStr : pubDateStr.replace(' ', 'T') + 'Z');
+  const diff = (Date.now() - date.getTime()) / 1000;
+  if (diff < 60) return '剛剛';
+  if (diff < 3600) return Math.floor(diff / 60) + ' 分鐘前';
+  if (diff < 86400) return Math.floor(diff / 3600) + ' 小時前';
+  if (diff < 86400 * 7) return Math.floor(diff / 86400) + ' 天前';
+  return date.toLocaleDateString('zh-TW');
+}
+
+async function fetchNews(query, count = 10) {
+  const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`;
+  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=${count}`;
+  const res = await fetch(apiUrl);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const json = await res.json();
+  if (json.status !== 'ok') throw new Error(json.message || 'RSS error');
+  return json.items || [];
+}
+
+async function renderNewsSection(query, containerId) {
+  const box = document.getElementById(containerId);
+  if (!box) return;
+  box.innerHTML = '<div class="text-sm text-slate-500 text-center py-6"><span class="loader inline-block align-middle mr-2"></span>抓取最新消息…</div>';
+  try {
+    const items = await fetchNews(query, 10);
+    if (!items.length) {
+      box.innerHTML = '<p class="text-sm text-slate-500 text-center py-4">查無相關新聞</p>';
+      return;
+    }
+    let totalScore = 0;
+    const list = items.map(item => {
+      const { title, source } = splitTitleSource(item.title || '');
+      const s = newsSentiment(item.title || '');
+      totalScore += s.score;
+      const safeTitle = title.replace(/</g, '&lt;');
+      return `
+        <a href="${item.link}" target="_blank" rel="noopener noreferrer"
+           class="block p-3 hover:bg-slate-50 transition border-b border-slate-100 last:border-b-0">
+          <div class="flex items-start gap-2">
+            <span class="px-2 py-0.5 ${s.cls} rounded text-[10px] font-bold whitespace-nowrap shrink-0 mt-0.5">${s.tag}</span>
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-medium text-slate-800 leading-snug">${safeTitle}</div>
+              <div class="text-xs text-slate-400 mt-1">
+                ${source ? `<span class="font-bold text-slate-500">${source}</span> · ` : ''}<span>${relativeTime(item.pubDate)}</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      `;
+    }).join('');
+
+    const overall = totalScore > 1 ? { tag: '偏多', emoji: '🔴', cls: 'bg-rose-50 border-rose-200 text-rose-700' }
+                  : totalScore < -1 ? { tag: '偏空', emoji: '🟢', cls: 'bg-emerald-50 border-emerald-200 text-emerald-700' }
+                  : { tag: '中性 / 訊號不明', emoji: '🟡', cls: 'bg-amber-50 border-amber-200 text-amber-700' };
+
+    box.innerHTML = `
+      <div class="border rounded-xl p-3 mb-3 ${overall.cls}">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xl">${overall.emoji}</span>
+          <span class="font-black">近期消息面：${overall.tag}</span>
+          <span class="text-xs opacity-75">（總分 ${totalScore >= 0 ? '+' : ''}${totalScore}・依標題關鍵字粗略判斷）</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-100 overflow-hidden">${list}</div>
+      <p class="text-xs text-slate-400 mt-2 text-center">來源：Google 新聞・點任一則開新分頁查看原文</p>
+    `;
+  } catch (err) {
+    box.innerHTML = `<p class="text-sm text-red-500 text-center py-4">新聞抓取失敗（${err.message}），稍後再試</p>`;
+  }
+}
+
+// ============================================================
+// 指標計算
+// ============================================================
+function sma(arr, n) {
+  const out = new Array(arr.length).fill(null);
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    if (i >= n) sum -= arr[i - n];
+    if (i >= n - 1) out[i] = sum / n;
+  }
+  return out;
+}
+
+function calcKD(highs, lows, closes, n = 9) {
+  const k = new Array(closes.length).fill(50);
+  const d = new Array(closes.length).fill(50);
+  for (let i = 0; i < closes.length; i++) {
+    if (i < n - 1) continue;
+    let hh = -Infinity, ll = Infinity;
+    for (let j = i - n + 1; j <= i; j++) {
+      if (highs[j] > hh) hh = highs[j];
+      if (lows[j] < ll) ll = lows[j];
+    }
+    const rsv = hh === ll ? 50 : ((closes[i] - ll) / (hh - ll)) * 100;
+    k[i] = (k[i - 1] !== undefined ? k[i - 1] : 50) * 2 / 3 + rsv / 3;
+    d[i] = (d[i - 1] !== undefined ? d[i - 1] : 50) * 2 / 3 + k[i] / 3;
+  }
+  return { k, d };
+}
+
+function calcRSI(closes, n = 14) {
+  const out = new Array(closes.length).fill(null);
+  if (closes.length <= n) return out;
+  let gain = 0, loss = 0;
+  for (let i = 1; i <= n; i++) {
+    const diff = closes[i] - closes[i - 1];
+    if (diff >= 0) gain += diff; else loss -= diff;
+  }
+  let avgGain = gain / n, avgLoss = loss / n;
+  out[n] = avgLoss === 0 ? 100 : 100 - 100 / (1 + avgGain / avgLoss);
+  for (let i = n + 1; i < closes.length; i++) {
+    const diff = closes[i] - closes[i - 1];
+    const g = diff > 0 ? diff : 0;
+    const l = diff < 0 ? -diff : 0;
+    avgGain = (avgGain * (n - 1) + g) / n;
+    avgLoss = (avgLoss * (n - 1) + l) / n;
+    out[i] = avgLoss === 0 ? 100 : 100 - 100 / (1 + avgGain / avgLoss);
+  }
+  return out;
+}
+
+function detectCross(maShort, maLong, lookback = 3) {
+  const last = maShort.length - 1;
+  for (let i = last; i >= last - lookback && i > 0; i--) {
+    if (maShort[i] == null || maLong[i] == null || maShort[i - 1] == null || maLong[i - 1] == null) continue;
+    if (maShort[i - 1] <= maLong[i - 1] && maShort[i] > maLong[i]) return { type: 'golden', daysAgo: last - i };
+    if (maShort[i - 1] >= maLong[i - 1] && maShort[i] < maLong[i]) return { type: 'death', daysAgo: last - i };
+  }
+  return null;
+}
+
+// ============================================================
+// 綜合判斷
+// ============================================================
+function analyze(closes, highs, lows) {
+  const ma5 = sma(closes, 5);
+  const ma20 = sma(closes, 20);
+  const ma60 = sma(closes, 60);
+  const { k, d } = calcKD(highs, lows, closes);
+  const rsi = calcRSI(closes);
+  const last = closes.length - 1;
+
+  const close = closes[last];
+  const ma5v = ma5[last], ma20v = ma20[last], ma60v = ma60[last];
+  const kv = k[last], dv = d[last], rsiv = rsi[last];
+
+  // 計分
+  let score = 0;
+  const reasons = [];
+  if (ma20v != null) {
+    if (close > ma20v) { score++; reasons.push('股價站上 20 日均線'); }
+    else { score--; reasons.push('股價跌破 20 日均線'); }
+  }
+  if (ma5v != null && ma20v != null) {
+    if (ma5v > ma20v) { score++; reasons.push('短均線在長均線之上'); }
+    else { score--; reasons.push('短均線在長均線之下'); }
+  }
+  if (ma20v != null && ma60v != null) {
+    if (ma20v > ma60v) { score++; }
+    else { score--; }
+  }
+  if (kv != null && dv != null) {
+    if (kv > dv) { score++; reasons.push('KD 指標 K 在 D 之上'); }
+    else { score--; reasons.push('KD 指標 K 在 D 之下'); }
+  }
+
+  // 超買超賣
+  let zone = 'neutral', zoneText = '合理區', zoneHint = '';
+  if (rsiv != null && rsiv > 70) { zone = 'overbought'; zoneText = '超買區'; zoneHint = 'RSI 偏高，技術面接近高檔，留意回檔風險'; score--; }
+  else if (rsiv != null && rsiv < 30) { zone = 'oversold'; zoneText = '超賣區'; zoneHint = 'RSI 偏低，技術面接近低檔，可留意反彈機會'; score++; }
+  else if (kv != null && kv > 80) { zone = 'overbought'; zoneText = '超買區'; zoneHint = 'KD 偏高，短線過熱'; score--; }
+  else if (kv != null && kv < 20) { zone = 'oversold'; zoneText = '超賣區'; zoneHint = 'KD 偏低，短線超跌'; score++; }
+  else { zoneHint = 'RSI 與 KD 皆在合理區間'; }
+
+  // 黃金 / 死亡交叉
+  const cross = detectCross(ma5, ma20);
+  if (cross) {
+    if (cross.type === 'golden') { score += 2; reasons.unshift(`${cross.daysAgo === 0 ? '今日' : cross.daysAgo + ' 日前'}出現黃金交叉`); }
+    else { score -= 2; reasons.unshift(`${cross.daysAgo === 0 ? '今日' : cross.daysAgo + ' 日前'}出現死亡交叉`); }
+  }
+
+  // 結論
+  let trend = 'neutral', trendText = '盤整', trendEmoji = '🟡';
+  if (score >= 3) { trend = 'bull'; trendText = '短期偏多'; trendEmoji = '🔴'; }
+  else if (score <= -3) { trend = 'bear'; trendText = '短期偏空'; trendEmoji = '🟢'; }
+
+  // 一句話建議
+  let oneLine;
+  if (trend === 'bull' && zone === 'overbought') oneLine = '趨勢偏多但已過熱，現價追高需小心';
+  else if (trend === 'bull' && zone === 'oversold') oneLine = '低檔偏多訊號出現，技術面可留意';
+  else if (trend === 'bull') oneLine = '短期動能偏多，趨勢向上';
+  else if (trend === 'bear' && zone === 'oversold') oneLine = '已在超賣區，但趨勢仍弱，建議觀察反彈訊號';
+  else if (trend === 'bear' && zone === 'overbought') oneLine = '反彈但中期仍弱，留意賣壓';
+  else if (trend === 'bear') oneLine = '短期動能偏空，趨勢向下';
+  else if (zone === 'overbought') oneLine = '盤整偏高，注意短線拉回';
+  else if (zone === 'oversold') oneLine = '盤整偏低，留意反彈機會';
+  else oneLine = '多空不明，盤整等待方向';
+
+  return {
+    close, ma5: ma5v, ma20: ma20v, ma60: ma60v, k: kv, d: dv, rsi: rsiv,
+    cross, score, trend, trendText, trendEmoji, zone, zoneText, zoneHint,
+    oneLine, reasons,
+    ma5Arr: ma5, ma20Arr: ma20, ma60Arr: ma60,
+    kArr: k, dArr: d, rsiArr: rsi
+  };
+}
+
+// ============================================================
+// 投資建議：根據 trend + zone + cross 給出明確的可買 / 可賣
+// ============================================================
+function getAction(a) {
+  const recentGolden = a.cross && a.cross.type === 'golden' && a.cross.daysAgo <= 5;
+  const recentDeath  = a.cross && a.cross.type === 'death'  && a.cross.daysAgo <= 5;
+
+  // 強烈買進
+  if (a.trend === 'bull' && a.zone === 'oversold')
+    return { tag: '可考慮買進', emoji: '🟢', tone: 'buy', strong: true,
+      advice: '低檔出現偏多訊號，技術面是相對划算的進場點，但仍須評估自身資金狀況。' };
+  if (a.trend === 'bull' && recentGolden)
+    return { tag: '可考慮買進', emoji: '🟢', tone: 'buy', strong: true,
+      advice: '剛出現黃金交叉且趨勢偏多，動能由弱轉強，可分批佈局。' };
+
+  // 一般買進
+  if (a.trend === 'bull' && a.zone !== 'overbought')
+    return { tag: '偏向買進', emoji: '🟢', tone: 'buy', strong: false,
+      advice: '趨勢向上、未過熱，可順勢操作，跌破 MA20 再評估。' };
+
+  // 過熱
+  if (a.trend === 'bull' && a.zone === 'overbought')
+    return { tag: '不宜追高', emoji: '🟠', tone: 'caution', strong: false,
+      advice: '趨勢偏多但已過熱，現價追高風險高；持有者可續抱、未進場者等回檔再說。' };
+
+  // 強烈賣出
+  if (a.trend === 'bear' && recentDeath)
+    return { tag: '建議減碼 / 避開', emoji: '🔴', tone: 'sell', strong: true,
+      advice: '剛出現死亡交叉且趨勢偏空，動能由強轉弱，持股可考慮減碼。' };
+  if (a.trend === 'bear' && a.zone === 'overbought')
+    return { tag: '偏向賣出', emoji: '🔴', tone: 'sell', strong: false,
+      advice: '反彈遇壓 + 中期偏空，技術面有逢高出脫的訊號。' };
+
+  // 觀望反彈
+  if (a.trend === 'bear' && a.zone === 'oversold')
+    return { tag: '觀望止跌', emoji: '🟡', tone: 'hold', strong: false,
+      advice: '已超賣但趨勢仍弱，等出現止跌（如紅 K + KD 翻揚）再考慮。' };
+
+  // 純偏空
+  if (a.trend === 'bear')
+    return { tag: '不宜進場', emoji: '🔴', tone: 'sell', strong: false,
+      advice: '中期趨勢向下，避開為宜，等明確止跌訊號。' };
+
+  // 中性 + 過熱
+  if (a.zone === 'overbought')
+    return { tag: '不宜追高', emoji: '🟠', tone: 'caution', strong: false,
+      advice: '盤整偏高，注意短線拉回。' };
+
+  // 中性 + 超賣
+  if (a.zone === 'oversold')
+    return { tag: '可留意反彈', emoji: '🟡', tone: 'hold', strong: false,
+      advice: '盤整偏低，技術面有反彈機會，但無明確趨勢。' };
+
+  // 純中性
+  return { tag: '中性觀望', emoji: '🟡', tone: 'hold', strong: false,
+    advice: '多空不明、訊號平淡，等候明確方向再行動。' };
+}
+
+// ============================================================
+// 完整交易計畫：自動計算關鍵價位、量比、進出場條件
+// ============================================================
+function findKeyLevels(closes, highs, lows) {
+  const N = closes.length;
+  const cur = closes[N - 1];
+  const win = (arr, n) => arr.slice(Math.max(0, N - n));
+  const max = arr => Math.max(...arr);
+  const min = arr => Math.min(...arr);
+  const round2 = v => Math.round(v * 100) / 100;
+
+  const recent20H = max(win(highs, 20));
+  const recent60H = max(win(highs, 60));
+  const recent20L = min(win(lows, 20));
+  const recent60L = min(win(lows, 60));
+  const allTimeL  = min(lows);
+
+  // 壓力位（要在現價之上）
+  const r1 = recent20H > cur ? recent20H : round2(cur * 1.05);
+  const r2 = recent60H > r1 ? recent60H : round2(r1 * 1.06);
+  // 支撐位（要在現價之下）
+  const s1 = recent20L < cur ? recent20L : round2(cur * 0.95);
+  const s2 = recent60L < s1 ? recent60L : round2(s1 * 0.94);
+  const strongS = allTimeL < s2 ? allTimeL : round2(s2 * 0.92);
+
+  return {
+    breakout: round2(cur), r1: round2(r1), r2: round2(r2),
+    s1: round2(s1), s2: round2(s2), strongS: round2(strongS),
+  };
+}
+
+// 進場合理價格：依趨勢計算 2-3 個價格區間
+function calcEntryZones(analysis, levels) {
+  const a = analysis;
+  const L = levels;
+  const cur = a.close;
+  const ma20 = a.ma20;
+  const zones = [];
+
+  const round2 = v => Math.round(v * 100) / 100;
+
+  if (a.trend === 'bull') {
+    // 保守區：靠近支撐 / MA20（首選）
+    const baseLow = ma20 != null ? Math.min(L.s1, ma20) : L.s1;
+    const baseHigh = ma20 != null ? Math.max(L.s1, ma20) : L.s1 * 1.03;
+    zones.push({
+      level: 'good',
+      name: '保守進場區',
+      tag: '✅ 首選',
+      from: round2(baseLow),
+      to: round2(baseHigh),
+      rationale: `等回測${ma20 != null ? ' MA20 / 支撐1 ' : '支撐1 '}不破再進，勝率較高、停損點明確`,
+    });
+
+    // 順勢區：現價附近（非過熱時）
+    if (a.zone !== 'overbought') {
+      zones.push({
+        level: 'aggressive',
+        name: '順勢進場區',
+        tag: '⚠️ 積極',
+        from: round2(cur * 0.98),
+        to: round2(cur * 1.01),
+        rationale: '順勢追多，但需嚴守 S1 停損，不貪心',
+      });
+    }
+
+    // 不宜區：壓力以上
+    if (cur < L.r2) {
+      zones.push({
+        level: 'avoid',
+        name: '不宜追高區',
+        tag: '⛔ 避開',
+        from: round2(Math.max(cur, L.r1) * 1.05),
+        to: round2(L.r2),
+        rationale: '價位偏高、拉回機率大，等回測再說',
+      });
+    }
+  } else if (a.trend === 'bear') {
+    zones.push({
+      level: 'avoid',
+      name: '建議觀望',
+      tag: '⛔ 不宜',
+      from: null, to: null,
+      rationale: '趨勢偏空，建議等止跌訊號（紅 K + KD 翻揚 + 量縮）再評估',
+    });
+    if (a.zone === 'oversold') {
+      zones.push({
+        level: 'aggressive',
+        name: '超跌反彈試單區（高風險）',
+        tag: '⚠️ 高風險',
+        from: round2(L.strongS),
+        to: round2(L.s1),
+        rationale: 'RSI/KD 已超賣，僅可小單試多，配合反轉訊號',
+      });
+    }
+  } else {
+    // 盤整：高低區間操作
+    zones.push({
+      level: 'good',
+      name: '逢低承接區',
+      tag: '✅ 區間下緣',
+      from: round2(L.s1),
+      to: round2(L.s1 * 1.03),
+      rationale: '盤整下緣分批承接，跌破即停損',
+    });
+    zones.push({
+      level: 'avoid',
+      name: '逢高減碼區',
+      tag: '📤 區間上緣',
+      from: round2(L.r1 * 0.97),
+      to: round2(L.r1),
+      rationale: '盤整上緣，可分批減碼或試空',
+    });
+  }
+
+  return zones;
+}
+
+function calcVolRatio(volumes) {
+  const N = volumes.length;
+  if (N < 6) return null;
+  const today = volumes[N - 1] || 0;
+  const last5 = volumes.slice(N - 6, N - 1);
+  const avg = last5.reduce((a, b) => a + b, 0) / 5;
+  if (!avg) return null;
+  return { today, avg, ratio: (today / avg - 1) * 100 };
+}
+
+function buildTradingPlan(code, name, market, industry, analysis, ohlc, lastDate, prevClose) {
+  const a = analysis;
+  const L = findKeyLevels(ohlc.closes, ohlc.highs, ohlc.lows);
+  const v = calcVolRatio(ohlc.volumes);
+  const price = a.close;
+  const chg = price - prevClose;
+  const chgPct = prevClose ? (chg / prevClose) * 100 : 0;
+  const action = getAction(a);
+
+  const fmt = (n) => {
+    if (n == null) return '—';
+    const num = typeof n === 'number' ? n : parseFloat(n);
+    return isNaN(num) ? '—' : num.toFixed(2);
+  };
+  const fmtInt = (n) => {
+    if (n == null) return '—';
+    const num = typeof n === 'number' ? n : parseFloat(n);
+    return isNaN(num) ? '—' : Math.round(num).toLocaleString();
+  };
+  const trendBadgeCls = a.trend === 'bull' ? 'text-rose-400' : a.trend === 'bear' ? 'text-emerald-400' : 'text-amber-400';
+  const chgCls = chg > 0 ? 'text-rose-400' : chg < 0 ? 'text-emerald-400' : 'text-slate-400';
+  const chgSign = chg > 0 ? '▲' : chg < 0 ? '▼' : '–';
+  const volRatioStr = v ? (v.ratio >= 0 ? '+' : '') + v.ratio.toFixed(0) + '%' : '—';
+  const volRatioCls = v && v.ratio > 0 ? 'text-rose-400' : 'text-emerald-400';
+
+  // 趨勢判斷要點
+  const trendBullets = [];
+  if (a.trend === 'bull') trendBullets.push('短期均線多頭排列，趨勢偏多');
+  else if (a.trend === 'bear') trendBullets.push('短期均線空頭排列，趨勢偏空');
+  else trendBullets.push('多空訊號交織，目前處於盤整');
+  if (a.cross?.type === 'golden') trendBullets.push(`${a.cross.daysAgo === 0 ? '今日' : a.cross.daysAgo + ' 日前'}出現黃金交叉`);
+  else if (a.cross?.type === 'death') trendBullets.push(`${a.cross.daysAgo === 0 ? '今日' : a.cross.daysAgo + ' 日前'}出現死亡交叉`);
+  if (a.rsi != null) {
+    if (a.rsi > 70) trendBullets.push(`RSI ${a.rsi.toFixed(0)}，進入超買區，留意拉回風險`);
+    else if (a.rsi < 30) trendBullets.push(`RSI ${a.rsi.toFixed(0)}，進入超賣區，留意反彈機會`);
+    else trendBullets.push(`RSI ${a.rsi.toFixed(0)}，處於合理區間`);
+  }
+  if (v) {
+    if (v.ratio > 30) trendBullets.push('成交量明顯放大，買賣盤積極');
+    else if (v.ratio < -30) trendBullets.push('成交量大幅萎縮，觀望氣氛濃');
+  }
+
+  // 觀察重點
+  const watchPoints = [
+    v ? `量能是否持續${v.ratio > 0 ? '放大' : '回升'}（量比 ${volRatioStr}）` : '量能變化',
+    `股價是否站穩 ${fmt(L.r1)} 並挑戰 ${fmt(L.r2)}`,
+    industry ? `${industry}族群消息面與報價變化` : '產業動向與消息面',
+    'KD 與 RSI 是否進一步背離或轉折',
+  ];
+
+  // 備註句
+  const noteHints = [];
+  if (industry) noteHints.push(`${name} 屬「${industry}」族群，受該產業景氣影響大`);
+  if (a.trend === 'bull' && a.zone === 'overbought') noteHints.push('短線強勢但位階偏高，追高需控管風險');
+  else if (a.trend === 'bear' && a.zone === 'oversold') noteHints.push('已過度超賣，可留意止跌反彈訊號');
+  else noteHints.push(action.advice);
+  noteHints.push('交易計畫為主，紀律執行為勝負關鍵');
+
+  const panel = (num, title, body, accent = 'amber') => `
+    <div class="bg-slate-800/60 border border-slate-700/50 rounded-xl p-3 sm:p-4">
+      <h4 class="text-${accent}-400 font-black text-sm mb-2 flex items-center gap-1.5">
+        <span class="bg-${accent}-400/20 text-${accent}-300 rounded px-1.5 py-0.5 text-xs">${num}</span>
+        ${title}
+      </h4>
+      <div class="text-xs sm:text-sm text-slate-200 space-y-1.5">${body}</div>
+    </div>`;
+
+  const ul = items => '<ul class="space-y-1">' +
+    items.map(t => `<li class="flex items-start gap-1.5"><span class="text-cyan-400 mt-0.5">•</span><span>${t}</span></li>`).join('') + '</ul>';
+
+  const checks = items => '<ul class="space-y-1">' +
+    items.map(t => `<li class="flex items-start gap-1.5"><span class="text-emerald-400">☑</span><span>${t}</span></li>`).join('') + '</ul>';
+
+  // Panel 2: 關鍵價位
+  const lvRow = (label, val, cls) => `
+    <div class="flex items-center gap-2">
+      <span class="text-slate-400 w-20">${label}</span>
+      <span class="flex-1 border-b border-dashed border-slate-600"></span>
+      <span class="${cls} font-black">${fmt(val)}</span>
+    </div>`;
+  const keyLevels = [
+    lvRow('突破上關價', L.breakout, 'text-rose-400'),
+    lvRow('壓力 1', L.r1, 'text-rose-400'),
+    lvRow('壓力 2', L.r2, 'text-rose-400'),
+    lvRow('支撐 1', L.s1, 'text-emerald-400'),
+    lvRow('支撐 2', L.s2, 'text-emerald-400'),
+    lvRow('強力支撐', L.strongS, 'text-emerald-400'),
+  ].join('');
+
+  // Panel 3: 進場合理價格
+  const entryZones = calcEntryZones(a, L);
+  const entryZonesHtml = entryZones.map(z => {
+    const cls = z.level === 'good' ? 'bg-emerald-900/40 border-emerald-600/60'
+              : z.level === 'aggressive' ? 'bg-amber-900/40 border-amber-600/60'
+              : 'bg-rose-900/40 border-rose-600/60';
+    const tagCls = z.level === 'good' ? 'bg-emerald-500 text-white'
+                 : z.level === 'aggressive' ? 'bg-amber-500 text-white'
+                 : 'bg-rose-500 text-white';
+    const priceHtml = (z.from != null && z.to != null)
+      ? `<div class="font-mono font-black text-base mt-1 text-slate-100">${fmt(z.from)} ~ ${fmt(z.to)}</div>`
+      : '<div class="text-xs italic text-slate-400 mt-1">暫不建議任何價位</div>';
+    return `
+      <div class="border ${cls} rounded-lg p-2.5">
+        <div class="flex items-center justify-between gap-2 flex-wrap">
+          <span class="font-bold text-xs">${z.name}</span>
+          <span class="${tagCls} px-2 py-0.5 rounded text-[10px] font-bold whitespace-nowrap">${z.tag}</span>
+        </div>
+        ${priceHtml}
+        <p class="text-[11px] text-slate-300 mt-1 leading-snug">${z.rationale}</p>
+      </div>`;
+  }).join('');
+
+  // Panel 4: 交易策略
+  const strategy = `
+    <div class="space-y-3">
+      <div class="bg-rose-900/30 border-l-2 border-rose-400 pl-3 py-2">
+        <div class="text-rose-400 font-bold mb-1">多頭策略</div>
+        <div class="text-xs space-y-0.5">
+          <div>條件：站穩 <b>${fmt(L.r1)}</b> 以上</div>
+          <div>進場：回測 <b>${fmt(L.s1)}~${fmt(L.r1)}</b></div>
+          <div>目標：<b>${fmt(L.r2)}</b> / <b>${fmt(L.r2 * 1.05)}</b></div>
+          <div>停損：跌破 <b>${fmt(L.s1)}</b></div>
+        </div>
+      </div>
+      <div class="bg-emerald-900/30 border-l-2 border-emerald-400 pl-3 py-2">
+        <div class="text-emerald-400 font-bold mb-1">空頭策略</div>
+        <div class="text-xs space-y-0.5">
+          <div>條件：跌破 <b>${fmt(L.s1)}</b></div>
+          <div>進場：反彈 <b>${fmt(L.s1)}</b> 以下</div>
+          <div>目標：<b>${fmt(L.s2)}</b> / <b>${fmt(L.strongS)}</b></div>
+          <div>停損：站回 <b>${fmt(L.r1)}</b> 以上</div>
+        </div>
+      </div>
+    </div>`;
+
+  // Panel 6: 進場計畫表
+  const entryTable = `
+    <table class="w-full text-[11px] sm:text-xs">
+      <thead class="text-slate-400 border-b border-slate-700">
+        <tr><th class="text-left py-1">情境</th><th>進場條件</th><th>價位</th><th>停損</th><th>目標1</th><th>目標2</th><th>盈虧比</th></tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-slate-700/40">
+          <td class="py-1.5 text-rose-400 font-bold">多頭</td>
+          <td class="text-center">站穩${fmt(L.r1)}以上回測</td>
+          <td class="text-center font-mono">${fmt(L.s1)}~${fmt(L.r1)}</td>
+          <td class="text-center font-mono text-emerald-400">${fmt(L.s1)}</td>
+          <td class="text-center font-mono">${fmt(L.r2)}</td>
+          <td class="text-center font-mono">${(L.r2 * 1.05).toFixed(2)}</td>
+          <td class="text-center font-bold">≥ 1:2</td>
+        </tr>
+        <tr>
+          <td class="py-1.5 text-emerald-400 font-bold">空頭</td>
+          <td class="text-center">跌破${fmt(L.s1)}反彈不過</td>
+          <td class="text-center font-mono">${(L.s1 * 0.97).toFixed(2)}~${fmt(L.s1)}</td>
+          <td class="text-center font-mono text-rose-400">${fmt(L.r1)}</td>
+          <td class="text-center font-mono">${fmt(L.s2)}</td>
+          <td class="text-center font-mono">${fmt(L.strongS)}</td>
+          <td class="text-center font-bold">≥ 1:2</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-[10px] text-slate-500 mt-2">※ 價位為參考，依盤中走勢彈性調整</p>`;
+
+  return `
+    <div class="bg-slate-900 text-slate-100 rounded-2xl shadow-xl overflow-hidden">
+      <!-- Header strip -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700 p-4 sm:p-5">
+        <div class="flex items-start justify-between flex-wrap gap-3">
+          <div>
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span class="text-3xl font-black text-cyan-300">${code}</span>
+              <span class="text-2xl font-black">${name}</span>
+              <span class="text-base text-slate-400">交易計畫</span>
+            </div>
+            <div class="text-xs text-slate-500 mt-1">
+              ${market ? `<span class="px-1.5 py-0.5 bg-slate-700 rounded">${market}</span>` : ''}
+              ${industry ? `<span class="ml-1.5">${industry}</span>` : ''}
+            </div>
+          </div>
+          <div class="grid grid-cols-3 sm:grid-cols-5 gap-x-4 gap-y-1 text-xs">
+            <div>
+              <div class="text-slate-500">更新日期</div>
+              <div class="font-bold">${lastDate || '—'}</div>
+            </div>
+            <div>
+              <div class="text-slate-500">目前股價</div>
+              <div class="font-black text-base text-rose-400">${fmt(price)}</div>
+            </div>
+            <div>
+              <div class="text-slate-500">漲跌</div>
+              <div class="font-black ${chgCls}">${chgSign} ${Math.abs(chg).toFixed(2)} <span class="text-[10px]">(${Math.abs(chgPct).toFixed(2)}%)</span></div>
+            </div>
+            <div>
+              <div class="text-slate-500">趨勢方向</div>
+              <div class="font-black ${trendBadgeCls}">${a.trendText}</div>
+            </div>
+            <div>
+              <div class="text-slate-500">量比 (5日)</div>
+              <div class="font-black ${volRatioCls}">${volRatioStr}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panels Grid -->
+      <div class="p-3 sm:p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        ${panel('1', '趨勢判斷', ul(trendBullets))}
+        ${panel('2', '關鍵價位', `<div class="space-y-1.5 text-xs">${keyLevels}</div>`)}
+        ${panel('3', '進場合理價格', `<div class="space-y-2">${entryZonesHtml}</div>`, 'cyan')}
+        ${panel('4', '交易策略', strategy)}
+        ${panel('5', '風險管理', ul([
+          '單筆風險：不超過總資金 2%',
+          '停損嚴格執行，不擴單、不加碼',
+          '盈虧比建議 ≥ 1:2',
+          '避免重大消息發布前後重倉操作'
+        ]), 'cyan')}
+        <div class="sm:col-span-2">${panel('6', '進場計畫（範例）', entryTable, 'cyan')}</div>
+        ${panel('7', '執行紀律', checks([
+          '進場前確認條件達成',
+          '嚴格執行停損停利',
+          '不預設立場，順勢操作',
+          '每日檢討，優化交易計畫',
+          '不因情緒影響紀律'
+        ]), 'emerald')}
+        ${panel('8', '觀察重點', checks(watchPoints), 'emerald')}
+        ${panel('9', '備註', ul(noteHints), 'slate')}
+      </div>
+
+      <!-- Core principles footer -->
+      <div class="mx-3 mb-3 sm:mx-5 sm:mb-5 py-2.5 px-4 bg-gradient-to-r from-amber-900/40 to-yellow-700/30 border border-amber-700/50 rounded-xl text-center">
+        <span class="text-amber-300 font-black text-sm">🎯 核心原則：</span>
+        <span class="text-amber-100 font-bold text-sm">順勢操作 · 嚴設停損 · 控管風險 · 紀律執行</span>
+      </div>
+    </div>
+  `;
+}
+
+// ============================================================
+// 渲染：股票卡片
+// ============================================================
+let chartInstance = null;
+
+function fmt(v, d = 2) { return v == null || isNaN(v) ? '—' : Number(v).toFixed(d); }
+
+function renderResult(code, meta, timestamps, opens, highs, lows, closes, volumes, analysis) {
+  const a = analysis;
+  const name = meta.longName || meta.shortName || code;
+  const price = meta.regularMarketPrice ?? closes[closes.length - 1];
+  const prev = meta.chartPreviousClose ?? meta.previousClose ?? closes[closes.length - 2];
+  const chg = price - prev;
+  const chgPct = prev ? (chg / prev) * 100 : 0;
+  const chgClass = chg >= 0 ? 'signal-bull' : 'signal-bear';
+  const chgSign = chg >= 0 ? '▲' : '▼';
+
+  const trendBg = a.trend === 'bull' ? 'bg-bull' : a.trend === 'bear' ? 'bg-bear' : 'bg-neutral';
+  const trendCls = a.trend === 'bull' ? 'signal-bull' : a.trend === 'bear' ? 'signal-bear' : 'signal-neutral';
+
+  const zoneBadge = a.zone === 'overbought' ? '<span class="px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs font-bold">超買區</span>'
+    : a.zone === 'oversold' ? '<span class="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-bold">超賣區</span>'
+    : '<span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-xs font-bold">合理區</span>';
+
+  const pinned = isPinned(code);
+  const pinIcon = pinned ? '⭐ 已釘選' : '☆ 釘選';
+
+  const html = `
+    <div class="fade-in space-y-4">
+      <!-- Main card -->
+      <div class="${trendBg} rounded-2xl shadow-md p-5 sm:p-6">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-4">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h2 class="text-2xl font-black text-slate-800">${name}</h2>
+              <span class="text-slate-500 text-sm font-mono">${code}</span>
+              ${zoneBadge}
+            </div>
+            <div class="flex items-baseline gap-3 mt-1 flex-wrap">
+              <span id="livePrice" class="text-3xl font-black ${chgClass}">${fmt(price)}</span>
+              <span id="liveChange" class="text-base font-bold ${chgClass}">${chgSign} ${fmt(Math.abs(chg))} (${fmt(Math.abs(chgPct))}%)</span>
+              <span id="liveTime" class="text-xs text-slate-500 ml-1"></span>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button id="pinBtn" class="px-3 py-2 bg-white/70 hover:bg-white rounded-lg text-sm font-bold border border-white">${pinIcon}</button>
+            <button id="shareBtn" class="px-3 py-2 bg-white/70 hover:bg-white rounded-lg text-sm font-bold border border-white">🔗 複製連結</button>
+          </div>
+        </div>
+
+        <!-- 一句話結論 -->
+        <div class="bg-white/70 rounded-xl p-4 mb-3">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-2xl">${a.trendEmoji}</span>
+            <span class="text-lg font-black ${trendCls}">${a.trendText}</span>
+          </div>
+          <p class="text-slate-700 font-medium">${a.oneLine}</p>
+          <p class="text-xs text-slate-500 mt-2">${a.zoneHint}</p>
+        </div>
+
+        <!-- 投資建議 -->
+        ${(() => {
+          const act = getAction(a);
+          const bg = act.tone === 'buy' ? 'bg-rose-50 border-rose-200'
+                  : act.tone === 'sell' ? 'bg-emerald-50 border-emerald-200'
+                  : act.tone === 'caution' ? 'bg-orange-50 border-orange-200'
+                  : 'bg-amber-50 border-amber-200';
+          const tagBg = act.tone === 'buy' ? 'bg-rose-500' : act.tone === 'sell' ? 'bg-emerald-500' : act.tone === 'caution' ? 'bg-orange-500' : 'bg-amber-500';
+          const star = act.strong ? '<span class="text-xs font-bold text-yellow-600 ml-1">★ 強烈訊號</span>' : '';
+          return `<div class="rounded-xl p-4 border-2 ${bg}">
+            <div class="flex items-center gap-2 mb-2 flex-wrap">
+              <span class="text-xs font-bold text-slate-500">📌 投資建議</span>
+              <span class="${tagBg} text-white text-sm font-black px-3 py-1 rounded-full">${act.emoji} ${act.tag}</span>
+              ${star}
+            </div>
+            <p class="text-sm text-slate-700">${act.advice}</p>
+          </div>`;
+        })()}
+      </div>
+
+      <!-- 完整交易計畫 (專業版) -->
+      ${buildTradingPlan(code, name, meta.market, meta.industry, a, { closes, highs, lows, volumes }, meta.lastDate, meta.previousClose)}
+
+      <!-- 消息面 / 時事 -->
+      <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <h3 class="text-sm font-bold text-slate-600">📰 消息面 · 時事新聞</h3>
+          <button id="refreshNews" class="text-xs text-blue-500 hover:underline">🔄 重新抓取</button>
+        </div>
+        <div id="newsContent"></div>
+      </div>
+
+      <!-- Chart -->
+      <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-5">
+        <h3 class="text-sm font-bold text-slate-600 mb-3">📊 近半年股價 + 均線</h3>
+        <div style="height: 280px;">
+          <canvas id="priceChart"></canvas>
+        </div>
+      </div>
+
+      <!-- 互動式每日表格 -->
+      <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-5">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+          <h3 class="text-sm font-bold text-slate-600">📋 每日數據表（點任一列在圖上標示）</h3>
+          <div id="rangeBtns" class="flex gap-1 text-xs">
+            <button class="range-btn px-3 py-1.5 rounded-lg font-bold bg-blue-500 text-white" data-range="30">近 30 天</button>
+            <button class="range-btn px-3 py-1.5 rounded-lg font-bold bg-slate-100 text-slate-600 hover:bg-slate-200" data-range="60">60 天</button>
+            <button class="range-btn px-3 py-1.5 rounded-lg font-bold bg-slate-100 text-slate-600 hover:bg-slate-200" data-range="90">90 天</button>
+            <button class="range-btn px-3 py-1.5 rounded-lg font-bold bg-slate-100 text-slate-600 hover:bg-slate-200" data-range="all">全部</button>
+          </div>
+        </div>
+        <div class="overflow-auto rounded-lg border border-slate-100" style="max-height: 460px;">
+          <table class="w-full text-xs whitespace-nowrap">
+            <thead class="sticky top-0 z-10 bg-slate-50 text-slate-600 shadow-sm">
+              <tr>
+                <th class="px-2.5 py-2 text-left font-bold">日期</th>
+                <th class="px-2.5 py-2 text-right font-bold">收盤</th>
+                <th class="px-2.5 py-2 text-right font-bold">漲跌</th>
+                <th class="px-2.5 py-2 text-right font-bold">%</th>
+                <th class="px-2.5 py-2 text-right font-bold">MA5</th>
+                <th class="px-2.5 py-2 text-right font-bold">MA20</th>
+                <th class="px-2.5 py-2 text-right font-bold">MA60</th>
+                <th class="px-2.5 py-2 text-right font-bold">K / D</th>
+                <th class="px-2.5 py-2 text-right font-bold">RSI</th>
+                <th class="px-2.5 py-2 text-center font-bold">訊號</th>
+              </tr>
+            </thead>
+            <tbody id="dailyTableBody"></tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-400 mt-2">
+          🔴 漲（台股慣例）／🟢 跌・<span class="font-bold">金叉</span>=黃金交叉・<span class="font-bold">死叉</span>=死亡交叉・點任一列圖表上方會標示日期
+        </p>
+      </div>
+
+      <!-- Indicators -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        ${indicatorCard('收盤價', fmt(a.close), null)}
+        ${indicatorCard('MA5', fmt(a.ma5), a.close > a.ma5 ? '股價在上' : '股價在下')}
+        ${indicatorCard('MA20', fmt(a.ma20), a.close > a.ma20 ? '股價在上' : '股價在下')}
+        ${indicatorCard('MA60', fmt(a.ma60), a.close > a.ma60 ? '股價在上' : '股價在下')}
+        ${indicatorCard('K / D', fmt(a.k) + ' / ' + fmt(a.d), a.k > a.d ? 'K 在 D 之上 ↑' : 'K 在 D 之下 ↓')}
+        ${indicatorCard('RSI(14)', fmt(a.rsi), a.rsi > 70 ? '偏高 ⚠️' : a.rsi < 30 ? '偏低 ⚠️' : '合理')}
+      </div>
+
+      <!-- Reasons -->
+      <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-5">
+        <h3 class="text-sm font-bold text-slate-600 mb-3">📝 訊號摘要</h3>
+        <ul class="space-y-1.5 text-sm text-slate-700">
+          ${a.reasons.map(r => '<li class="flex items-start gap-2"><span class="text-blue-400">•</span><span>' + r + '</span></li>').join('')}
+        </ul>
+        <p class="text-xs text-slate-400 mt-3 pt-3 border-t border-slate-100">技術指標分數：${a.score >= 0 ? '+' : ''}${a.score}（≥3 偏多 / ≤-3 偏空 / 其他盤整）</p>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('emptyState').classList.add('hidden');
+  const result = document.getElementById('resultSection');
+  result.innerHTML = html;
+
+  // 畫圖（time scale，hover 與日期 100% 對齊）
+  if (chartInstance) chartInstance.destroy();
+  const ctx = document.getElementById('priceChart').getContext('2d');
+  const dates = timestamps.map(t => new Date(t * 1000));
+  const toXY = (arr) => arr.map((v, i) => v == null ? null : { x: dates[i], y: v });
+  chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+        { label: '收盤', data: toXY(closes), borderColor: '#1e40af', backgroundColor: 'rgba(30,64,175,0.05)', fill: true, tension: 0.2, pointRadius: 0, borderWidth: 2, spanGaps: true },
+        { label: 'MA5',  data: toXY(a.ma5Arr),  borderColor: '#dc2626', borderWidth: 1.5, pointRadius: 0, fill: false, borderDash: [4,3], spanGaps: true },
+        { label: 'MA20', data: toXY(a.ma20Arr), borderColor: '#f59e0b', borderWidth: 1.5, pointRadius: 0, fill: false, borderDash: [4,3], spanGaps: true },
+        { label: 'MA60', data: toXY(a.ma60Arr), borderColor: '#10b981', borderWidth: 1.5, pointRadius: 0, fill: false, borderDash: [4,3], spanGaps: true },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false, axis: 'x' },
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 14 } },
+        tooltip: {
+          callbacks: {
+            title: (items) => {
+              if (!items.length) return '';
+              const d = new Date(items[0].parsed.x);
+              return d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0');
+            },
+            label: (ctx) => `${ctx.dataset.label}: ${Number(ctx.parsed.y).toFixed(2)}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          type: 'time',
+          time: {
+            unit: 'month',
+            displayFormats: { month: 'M月', day: 'M/d' },
+            tooltipFormat: 'yyyy/M/d'
+          },
+          ticks: { font: { size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 9 },
+          grid: { color: 'rgba(0,0,0,0.04)' }
+        },
+        y: { ticks: { font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
+      }
+    }
+  });
+
+  // 互動表格渲染
+  const tbody = document.getElementById('dailyTableBody');
+  function renderDailyTable(range) {
+    const total = closes.length;
+    const startIdx = range === 'all' ? 0 : Math.max(0, total - parseInt(range));
+    const rows = [];
+    for (let i = total - 1; i >= startIdx; i--) {
+      const date = new Date(timestamps[i] * 1000);
+      const dateStr = `${date.getMonth()+1}/${String(date.getDate()).padStart(2,'0')}`;
+      const close = closes[i];
+      const prev  = i > 0 ? closes[i - 1] : close;
+      const chg = close - prev;
+      const chgPct = prev ? (chg / prev) * 100 : 0;
+      const ma5  = a.ma5Arr[i],  ma20 = a.ma20Arr[i], ma60 = a.ma60Arr[i];
+      const k = a.kArr[i], d = a.dArr[i], rsi = a.rsiArr[i];
+
+      // 訊號徽章
+      const badges = [];
+      if (i > 0 && ma5 != null && ma20 != null && a.ma5Arr[i-1] != null && a.ma20Arr[i-1] != null) {
+        if (a.ma5Arr[i-1] <= a.ma20Arr[i-1] && ma5 > ma20)
+          badges.push('<span class="px-1.5 py-0.5 bg-red-500 text-white rounded text-[10px] font-bold">金叉</span>');
+        else if (a.ma5Arr[i-1] >= a.ma20Arr[i-1] && ma5 < ma20)
+          badges.push('<span class="px-1.5 py-0.5 bg-green-600 text-white rounded text-[10px] font-bold">死叉</span>');
+      }
+      if (rsi != null && rsi > 70) badges.push('<span class="px-1.5 py-0.5 bg-orange-100 text-orange-700 rounded text-[10px] font-bold">超買</span>');
+      else if (rsi != null && rsi < 30) badges.push('<span class="px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded text-[10px] font-bold">超賣</span>');
+      if (k != null && k > 80 && (rsi == null || rsi <= 70)) badges.push('<span class="px-1.5 py-0.5 bg-orange-50 text-orange-600 rounded text-[10px] font-bold">K高</span>');
+      else if (k != null && k < 20 && (rsi == null || rsi >= 30)) badges.push('<span class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded text-[10px] font-bold">K低</span>');
+
+      const chgCls = chg > 0 ? 'text-red-600' : chg < 0 ? 'text-green-600' : 'text-slate-400';
+      const chgSign = chg > 0 ? '▲' : chg < 0 ? '▼' : '–';
+      const isLatest = i === total - 1;
+      const baseRowCls = isLatest ? 'bg-yellow-50 font-bold' : 'hover:bg-blue-50';
+
+      const fmt2 = v => v == null ? '<span class="text-slate-300">—</span>' : v.toFixed(2);
+      const fmt0 = v => v == null ? '<span class="text-slate-300">—</span>' : v.toFixed(0);
+
+      rows.push(`
+        <tr class="row ${baseRowCls} cursor-pointer border-b border-slate-100 transition" data-ts="${timestamps[i]}" data-idx="${i}">
+          <td class="px-2.5 py-2 font-mono text-slate-700">${dateStr}${isLatest ? ' <span class="text-[10px] text-yellow-600">(最新)</span>' : ''}</td>
+          <td class="px-2.5 py-2 text-right font-bold text-slate-800">${fmt2(close)}</td>
+          <td class="px-2.5 py-2 text-right ${chgCls}">${chgSign} ${Math.abs(chg).toFixed(2)}</td>
+          <td class="px-2.5 py-2 text-right ${chgCls}">${chgSign} ${Math.abs(chgPct).toFixed(2)}%</td>
+          <td class="px-2.5 py-2 text-right text-slate-500">${fmt2(ma5)}</td>
+          <td class="px-2.5 py-2 text-right text-slate-500">${fmt2(ma20)}</td>
+          <td class="px-2.5 py-2 text-right text-slate-500">${fmt2(ma60)}</td>
+          <td class="px-2.5 py-2 text-right text-slate-500">${fmt0(k)} / ${fmt0(d)}</td>
+          <td class="px-2.5 py-2 text-right text-slate-500">${fmt0(rsi)}</td>
+          <td class="px-2.5 py-2 text-center"><div class="flex flex-wrap gap-1 justify-center">${badges.join('')}</div></td>
+        </tr>
+      `);
+    }
+    tbody.innerHTML = rows.join('');
+
+    // 列點擊：圖表畫垂直線
+    tbody.querySelectorAll('tr.row').forEach(tr => {
+      tr.onclick = () => {
+        const ts = parseInt(tr.dataset.ts) * 1000;
+        if (chartInstance) {
+          chartInstance.options.plugins.verticalLine = { x: ts };
+          chartInstance.update('none');
+        }
+        tbody.querySelectorAll('tr.row').forEach(t => t.classList.remove('ring-2', 'ring-blue-400'));
+        tr.classList.add('ring-2', 'ring-blue-400');
+      };
+    });
+  }
+  renderDailyTable('30');
+
+  // 區間按鈕
+  document.querySelectorAll('#rangeBtns .range-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('#rangeBtns .range-btn').forEach(b => {
+        b.classList.remove('bg-blue-500', 'text-white');
+        b.classList.add('bg-slate-100', 'text-slate-600');
+      });
+      btn.classList.remove('bg-slate-100', 'text-slate-600');
+      btn.classList.add('bg-blue-500', 'text-white');
+      renderDailyTable(btn.dataset.range);
+    };
+  });
+
+  // 抓消息面：以中文股名為主、退而以代號搜尋
+  const newsQuery = (name && name !== code) ? name : code;
+  renderNewsSection(newsQuery, 'newsContent');
+  document.getElementById('refreshNews').onclick = () => renderNewsSection(newsQuery, 'newsContent');
+
+  // 啟動即時報價（如果已設定 Worker）
+  startLiveUpdates(code);
+
+  // 按鈕事件
+  document.getElementById('pinBtn').onclick = () => {
+    togglePin(code);
+    renderPins();
+    document.getElementById('pinBtn').innerText = isPinned(code) ? '⭐ 已釘選' : '☆ 釘選';
+  };
+  document.getElementById('shareBtn').onclick = async () => {
+    const url = location.origin + location.pathname + '?stock=' + code;
+    try {
+      await navigator.clipboard.writeText(url);
+      const btn = document.getElementById('shareBtn');
+      const orig = btn.innerText;
+      btn.innerText = '✅ 已複製！';
+      setTimeout(() => btn.innerText = orig, 1500);
+    } catch {
+      prompt('複製這個連結分享給朋友：', url);
+    }
+  };
+
+  // 更新 URL（不重整頁面）
+  const newUrl = location.pathname + '?stock=' + code;
+  history.replaceState(null, '', newUrl);
+
+  // 上次更新時間
+  document.getElementById('lastUpdate').innerText = '最後查詢 ' + new Date().toLocaleTimeString('zh-TW', { hour12: false });
+}
+
+function indicatorCard(label, value, hint) {
+  return `<div class="bg-white rounded-xl p-3 shadow-sm">
+    <div class="text-xs text-slate-500">${label}</div>
+    <div class="text-lg font-black text-slate-800 mt-0.5">${value}</div>
+    ${hint ? '<div class="text-xs text-slate-400 mt-0.5">' + hint + '</div>' : ''}
+  </div>`;
+}
+
+// ============================================================
+// 渲染：釘選清單
+// ============================================================
+function renderPins() {
+  const pins = getPins();
+  const section = document.getElementById('pinnedSection');
+  const grid = document.getElementById('pinnedGrid');
+  if (pins.length === 0) {
+    section.classList.add('hidden');
+    return;
+  }
+  section.classList.remove('hidden');
+  grid.innerHTML = pins.map(code => `
+    <button class="pinned-card bg-white rounded-xl p-3 shadow-sm text-left" data-code="${code}">
+      <div class="flex items-center justify-between">
+        <span class="font-mono text-sm font-bold text-slate-700">${code}</span>
+        <span class="text-xs text-slate-300">點擊查詢</span>
+      </div>
+      <div class="text-xs text-slate-400 mt-1" id="pin-hint-${code}">—</div>
+    </button>
+  `).join('');
+  grid.querySelectorAll('.pinned-card').forEach(btn => {
+    btn.onclick = () => loadStock(btn.dataset.code);
+  });
+}
+
+// ============================================================
+// 本日適合進場：掃描熱門 30 檔
+// ============================================================
+const SCREEN_LIST = [
+  '2330','2317','2454','2308','2382','2891','2412','2881','2882','6505',
+  '1303','1301','1216','3711','2884','2885','2890','2887','5880','3045',
+  '4904','1101','2603','2609','2615','3034','2379','3008','0050','0056'
+];
+const SCREEN_CACHE_KEY = 'stock_screen_cache_v1';
+const SCREEN_TTL_MS = 60 * 60 * 1000; // 1 小時
+
+async function fetchScreening() {
+  const start = new Date();
+  start.setMonth(start.getMonth() - 5);
+  const startStr = start.toISOString().slice(0, 10);
+  const nameMap = await loadNameMap();
+  const results = [];
+
+  // 6 檔一批，避免一次打太多
+  for (let i = 0; i < SCREEN_LIST.length; i += 6) {
+    const batch = SCREEN_LIST.slice(i, i + 6);
+    const batchOut = await Promise.all(batch.map(async code => {
+      try {
+        const url = `${FINMIND_BASE}?dataset=TaiwanStockPrice&data_id=${code}&start_date=${startStr}`;
+        const res = await fetch(url);
+        const json = await res.json();
+        if (!json.data || json.data.length < 60) return null;
+        const valid = json.data.filter(r => r.close != null && r.max != null && r.min != null);
+        if (valid.length < 60) return null;
+        const closes = valid.map(r => r.close);
+        const highs  = valid.map(r => r.max);
+        const lows   = valid.map(r => r.min);
+        const an = analyze(closes, highs, lows);
+        const action = getAction(an);
+        const last = valid[valid.length - 1];
+        const prev = valid[valid.length - 2] || last;
+        const chgPct = prev.close ? ((last.close - prev.close) / prev.close) * 100 : 0;
+        return { code, name: nameMap[code]?.name || code, close: last.close, chgPct, an, action };
+      } catch { return null; }
+    }));
+    results.push(...batchOut.filter(Boolean));
+  }
+  return results;
+}
+
+async function getScreening(forceRefresh = false) {
+  if (!forceRefresh) {
+    try {
+      const cached = JSON.parse(localStorage.getItem(SCREEN_CACHE_KEY) || 'null');
+      if (cached && Date.now() - cached.ts < SCREEN_TTL_MS) return cached.results;
+    } catch {}
+  }
+  const results = await fetchScreening();
+  try { localStorage.setItem(SCREEN_CACHE_KEY, JSON.stringify({ ts: Date.now(), results })); } catch {}
+  return results;
+}
+
+function renderScreening(results) {
+  const box = document.getElementById('screenContent');
+  // 取「可考慮買進 / 偏向買進」的，依 score 由高到低
+  const picks = results
+    .filter(r => r.action.tone === 'buy')
+    .sort((a, b) => b.an.score - a.an.score);
+
+  if (picks.length === 0) {
+    box.innerHTML = `
+      <div class="text-center py-4">
+        <div class="text-3xl mb-2">😴</div>
+        <p class="text-sm text-slate-500 font-bold">今天沒有強烈進場訊號</p>
+        <p class="text-xs text-slate-400 mt-1">熱門 30 檔目前都不在「偏向買進」的技術面狀態，建議耐心等待。</p>
+      </div>`;
+    return;
+  }
+
+  const card = (r) => {
+    const star = r.action.strong ? '<span class="text-xs font-bold text-yellow-600">★</span>' : '';
+    const chgCls = r.chgPct >= 0 ? 'signal-bull' : 'signal-bear';
+    const chgSign = r.chgPct >= 0 ? '▲' : '▼';
+    return `
+      <button class="screen-card text-left bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-3 transition" data-code="${r.code}">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="font-black text-slate-800 text-sm truncate">${r.name}</div>
+          ${star}
+        </div>
+        <div class="font-mono text-xs text-slate-500 mb-1.5">${r.code}</div>
+        <div class="flex items-baseline gap-2 mb-1.5">
+          <span class="font-black text-slate-800">${r.close.toFixed(2)}</span>
+          <span class="text-xs font-bold ${chgCls}">${chgSign} ${Math.abs(r.chgPct).toFixed(2)}%</span>
+        </div>
+        <div class="text-xs font-bold text-rose-600">${r.action.emoji} ${r.action.tag}</div>
+      </button>
+    `;
+  };
+
+  const cacheTime = (() => {
+    try {
+      const c = JSON.parse(localStorage.getItem(SCREEN_CACHE_KEY) || 'null');
+      if (c) return new Date(c.ts).toLocaleTimeString('zh-TW', { hour12: false });
+    } catch {}
+    return '';
+  })();
+
+  box.innerHTML = `
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 mb-2">
+      ${picks.slice(0, 12).map(card).join('')}
+    </div>
+    <p class="text-xs text-slate-400 text-center pt-1">共找到 ${picks.length} 檔・掃描時間 ${cacheTime}・點擊查看完整分析</p>
+  `;
+
+  box.querySelectorAll('.screen-card').forEach(el => {
+    el.onclick = () => loadStock(el.dataset.code);
+  });
+}
+
+async function initScreening(forceRefresh = false) {
+  const box = document.getElementById('screenContent');
+  if (forceRefresh) {
+    box.innerHTML = `<div class="text-sm text-slate-500 text-center py-3"><span class="loader inline-block align-middle mr-2"></span>正在掃描熱門 30 檔…</div>`;
+  }
+  try {
+    const results = await getScreening(forceRefresh);
+    renderScreening(results);
+  } catch (err) {
+    box.innerHTML = `<p class="text-sm text-red-500 text-center py-2">掃描失敗，請稍後重試。</p>`;
+  }
+}
+
+// ============================================================
+// 主流程
+// ============================================================
+async function loadStock(code) {
+  code = String(code).trim().toUpperCase();
+  if (!code) return;
+
+  // 清除上一檔股票的即時更新計時器
+  if (liveTimer) { clearInterval(liveTimer); liveTimer = null; }
+
+  const result = document.getElementById('resultSection');
+  document.getElementById('emptyState').classList.add('hidden');
+  result.innerHTML = `<div class="bg-white rounded-2xl shadow-sm p-8 text-center">
+    <div class="loader mx-auto"></div>
+    <p class="text-sm text-slate-500 mt-3">正在抓取 ${code} 的資料…</p>
+  </div>`;
+
+  try {
+    const [rows, info] = await Promise.all([
+      fetchPriceData(code),
+      getStockInfo(code).catch(() => ({ name: code, industry: '', type: '' }))
+    ]);
+    const name = info.name;
+
+    // FinMind 由舊到新（已排序）；過濾掉缺值
+    const valid = rows.filter(r => r.close != null && r.max != null && r.min != null && r.open != null);
+    if (valid.length < 30) throw new Error('資料不足，無法計算指標（需至少 30 個交易日）');
+
+    const cTs = valid.map(r => Math.floor(new Date(r.date + 'T00:00:00+08:00').getTime() / 1000));
+    const cO  = valid.map(r => r.open);
+    const cH  = valid.map(r => r.max);
+    const cL  = valid.map(r => r.min);
+    const cC  = valid.map(r => r.close);
+    const cV  = valid.map(r => r.Trading_Volume);
+
+    const last = valid[valid.length - 1];
+    const prev = valid[valid.length - 2] || { close: last.close };
+    const meta = {
+      longName: name,
+      industry: info.industry || '',
+      market: info.type === 'twse' ? '上市' : info.type === 'tpex' ? '上櫃' : '',
+      regularMarketPrice: last.close,
+      chartPreviousClose: prev.close,
+      previousClose: prev.close,
+      lastDate: last.date
+    };
+
+    const analysis = analyze(cC, cH, cL);
+    renderResult(code, meta, cTs, cO, cH, cL, cC, cV, analysis);
+  } catch (err) {
+    result.innerHTML = `<div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+      <div class="text-3xl mb-2">😢</div>
+      <p class="text-red-700 font-bold">查詢失敗</p>
+      <p class="text-sm text-red-600 mt-1">${err.message || '請稍後再試'}</p>
+      <p class="text-xs text-slate-500 mt-3">提示：請確認是台股代號（4 位數字），上市與上櫃均支援。若 API 暫時忙碌，稍候再試即可。</p>
+    </div>`;
+  }
+}
+
+// ============================================================
+// 事件
+// ============================================================
+document.getElementById('searchForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const code = document.getElementById('stockInput').value.trim();
+  if (code) loadStock(code);
+});
+
+document.querySelectorAll('.quick-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.getElementById('stockInput').value = btn.dataset.code;
+    loadStock(btn.dataset.code);
+  };
+});
+
+document.getElementById('clearPins').onclick = () => {
+  if (confirm('確定清空所有釘選的股票？')) {
+    setPins([]);
+    renderPins();
+  }
+};
+
+document.getElementById('refreshScreen').onclick = () => initScreening(true);
+
+// 啟動
+renderPins();
+initScreening();
+const params = new URLSearchParams(location.search);
+const initStock = params.get('stock');
+if (initStock) {
+  document.getElementById('stockInput').value = initStock;
+  loadStock(initStock);
+}
+</script>
+
+
+
+</body><div style="position: fixed; z-index: 2147483647; opacity: 0.9; display: none; top: 85px; right: 21px;"><template shadowrootmode="open"><div data-shown="true"><div style="text-align: right;">
+        <span class="number-indicator" data-number="0" style="
+                display: inline-flex;
+                width: 25px;
+                height: 25px;
+                background: black;
+                padding: 10px;
+                border-radius: 100px;
+                margin-bottom: 5px;
+                cursor: pointer;
+                border: 3px solid #83838382;
+            ">
+            <svg style="
+                filter: invert(1);
+            " version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 585.913 585.913" xml:space="preserve">
+                <g>
+                    <path d="M11.173,46.2v492.311l346.22,47.402V535.33c0.776,0.058,1.542,0.109,2.329,0.109h177.39
+                    c20.75,0,37.627-16.883,37.627-37.627V86.597c0-20.743-16.877-37.628-37.627-37.628h-177.39c-0.781,0-1.553,0.077-2.329,0.124V0
+                    L11.173,46.2z M110.382,345.888l-1.37-38.273c-0.416-11.998-0.822-26.514-0.822-41.023l-0.415,0.01
+                    c-2.867,12.767-6.678,26.956-10.187,38.567l-10.961,38.211l-15.567-0.582l-9.239-37.598c-2.801-11.269-5.709-24.905-7.725-37.361
+                    l-0.25,0.005c-0.503,12.914-0.879,27.657-1.503,39.552L50.84,343.6l-17.385-0.672l5.252-94.208l25.415-0.996l8.499,32.064
+                    c2.724,11.224,5.467,23.364,7.428,34.819h0.389c2.503-11.291,5.535-24.221,8.454-35.168l9.643-33.042l27.436-1.071l5.237,101.377
+                    L110.382,345.888z M172.479,349.999c-12.569-0.504-23.013-4.272-28.539-8.142l4.504-17.249c3.939,2.226,13.1,6.445,22.373,6.687
+                    c12.009,0.32,18.174-5.497,18.174-13.218c0-10.068-9.838-14.683-19.979-14.74l-9.253-0.052v-16.777l8.801-0.066
+                    c7.708-0.208,17.646-3.262,17.646-11.905c0-6.121-4.914-10.562-14.635-10.331c-7.95,0.189-16.245,3.914-20.213,6.446l-4.52-16.693
+                    c5.693-4.008,17.224-8.11,29.883-8.588c21.457-0.795,33.643,10.407,33.643,24.625c0,11.029-6.197,19.691-18.738,24.161v0.314
+                    c12.229,2.216,22.266,11.663,22.266,25.281C213.89,338.188,197.866,351.001,172.479,349.999z M331.104,302.986
+                    c0,36.126-19.55,52.541-51.193,51.286c-29.318-1.166-46.019-17.103-46.019-52.044v-61.104l25.711-1.006v64.201
+                    c0,19.191,7.562,29.146,21.179,29.502c14.234,0.368,22.189-8.976,22.189-29.26v-66.125l28.122-1.097v65.647H331.104z
+                    M359.723,70.476h177.39c8.893,0,16.125,7.236,16.125,16.126v411.22c0,8.888-7.232,16.127-16.125,16.127h-177.39
+                    c-0.792,0-1.563-0.116-2.329-0.232V380.782c17.685,14.961,40.504,24.032,65.434,24.032c56.037,0,101.607-45.576,101.607-101.599
+                    c0-56.029-45.581-101.603-101.607-101.603c-24.93,0-47.749,9.069-65.434,24.035V70.728
+                    C358.159,70.599,358.926,70.476,359.723,70.476z M390.873,364.519V245.241c0-1.07,0.615-2.071,1.586-2.521
+                    c0.981-0.483,2.13-0.365,2.981,0.307l93.393,59.623c0.666,0.556,1.065,1.376,1.065,2.215c0,0.841-0.399,1.67-1.065,2.215
+                    l-93.397,59.628c-0.509,0.4-1.114,0.61-1.743,0.61l-1.233-0.289C391.488,366.588,390.873,365.585,390.873,364.519z"></path>
+                </g>
+            </svg>
+        </span>
+    </div><style>
+        .number-indicator{
+            position:relative;
+        }
+
+        .number-indicator::after{
+            content: attr(data-number);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: #40a9ff;
+            font-size: 14px;
+            font-weight: bold;
+            background: #000;
+            border-radius: 10px;
+            padding: 3px 5px;
+        }
+
+        .copy-link:active{
+            color: #ccc;
+        }
+
+        .download-btn:hover{
+            text-decoration: underline;
+        }
+        .download-btn:active{
+            opacity: 0.9;
+        }
+
+        .stop-btn:hover{
+            text-decoration: underline;
+        }
+        .stop-btn:active{
+            opacity: 0.9;
+        }
+
+        .m3u8-item{
+            color: white;
+            margin-bottom: 5px;
+            display: flex;
+            flex-direction: row;
+            background: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        [data-shown="false"] {
+            opacity: 0.8;
+            zoom: 0.8;
+        }
+
+        [data-shown="false"]:hover{
+            opacity: 1;
+        }
+
+        [data-shown="false"] .m3u8-item{
+            display: none;
+        }
+
+    </style></div></template></div><style>
+            /* 按钮组容器 */
+            .wtmzjk-btn-group {
+                display: inline-flex;
+                align-items: center;
+                margin: 2px 8px;
+                border-radius: 6px; /* 整体圆角 */
+                overflow: hidden;   /* 确保子元素不溢出圆角 */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+                vertical-align: middle;
+                font-size: 12px;
+                line-height: 1;
+            }
+
+            /* 按钮通用样式 */
+            .wtmzjk-btn {
+                all: initial;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 6px 10px;
+                cursor: pointer;
+                background: #306eff;; /* 主色调，可调整 */
+                color: white;
+                border: none;
+                font-family: sans-serif;
+                font-size: inherit;
+                font-weight: 600;
+                transition: background 0.2s, filter 0.2s;
+                text-decoration: none;
+                height: 24px;
+                box-sizing: border-box;
+            }
+
+            .wtmzjk-btn:hover {
+                background: #497dfd; /* Hover 深色 */
+            }
+            
+            .wtmzjk-btn:active {
+                background: #1e5ced; /* Active 更深 */
+            }
+
+            /* 图标样式 */
+            .wtmzjk-btn svg, .wtmzjk-btn img {
+                height: 14px;
+                width: 14px;
+                fill: white;
+                pointer-events: none;
+                margin-right: 4px; /* 图标与文字间距 */
+            }
+            
+            /* 仅图标模式修正 */
+            .wtmzjk-btn.icon-only svg {
+                margin-right: 0;
+            }
+
+            /* 分割线：通过右边框实现 */
+            .wtmzjk-btn:not(:last-child) {
+                border-right: 1px solid rgba(255, 255, 255, 0.3);
+            }
+        </style></html>
